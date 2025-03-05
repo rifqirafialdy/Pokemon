@@ -50,7 +50,6 @@ const DetailsPage: FC = () => {
             <p className="mt-2 text-xl text-neutral-100 ">{remainingHealth} from {maxHealth}</p>
           </div>
 
-          {/* Attack & Defense Stats */}
           <div className="flex justify-between items-center text-white border-t border-gray-600 pt-3">
             <div>
             <p className="text-2xl font-semibold text-[#97A0CC] mb-2">Attack </p>

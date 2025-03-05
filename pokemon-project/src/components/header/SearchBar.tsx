@@ -16,7 +16,7 @@ const SearchBar: FC = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    setSearchQuery(e.target.value); // Update search in context
+    setSearchQuery(e.target.value);
   };
 
   return (

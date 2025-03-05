@@ -17,14 +17,14 @@ const usePokemonDetails = (url: string) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!url) return; // Prevent fetch if URL is empty
+    if (!url) return; 
 
     const fetchPokemonDetails = async () => {
       try {
         setLoading(true);
-        setError(""); // Reset error on new fetch
+        setError(""); 
 
-        const id = url.split("/").filter(Boolean).pop(); // Extract ID from URL
+        const id = url.split("/").filter(Boolean).pop(); 
         const storageKey = `pokemon_${id}`;
 
         const cachedData = localStorage.getItem(storageKey);
