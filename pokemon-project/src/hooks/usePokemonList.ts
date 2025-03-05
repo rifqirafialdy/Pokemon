@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import PokemonContext from "../contexts/PokemonContext";
 
 
-const usePokemonList = (limit: number, sortOption: string, searchQuery: string, offset: number) => {
+const usePokemonList = (  sortOption: string, searchQuery: string, ) => {
     const context = useContext(PokemonContext);
     if (!context) {
       throw new Error("usePokemonList must be used within a PokemonProvider");

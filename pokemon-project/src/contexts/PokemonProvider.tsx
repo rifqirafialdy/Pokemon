@@ -10,7 +10,7 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [error, setError] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("");
-  const [limit, setLimit] = useState<number>(10);
+  const limit=10;
   const [offset, setOffset] = useState<number>(0);
   const [totalFilteredItems, setTotalFilteredItems] = useState<number>(0);
 
