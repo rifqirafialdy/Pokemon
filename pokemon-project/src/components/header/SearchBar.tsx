@@ -3,7 +3,6 @@ import PokemonContext from "../../contexts/PokemonContext";// Import context
 
 const SearchBar: FC = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [query, setQuery] = useState(""); 
 
   const context = useContext(PokemonContext);
 
@@ -15,7 +14,6 @@ const SearchBar: FC = () => {
   const { setSearchQuery } = context;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
     setSearchQuery(e.target.value);
   };
 
@@ -26,7 +24,6 @@ const SearchBar: FC = () => {
           type="text"
           placeholder="Search..."
           className="border-none outline-none bg-neutral-100 rounded-md transition-all p-2"
-          value={query}
           onChange={handleSearchChange}
           onBlur={() => setIsSearchActive(false)}
         />

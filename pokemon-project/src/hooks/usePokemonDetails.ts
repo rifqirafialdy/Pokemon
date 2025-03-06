@@ -29,11 +29,15 @@ const usePokemonDetails = (url: string) => {
 
         const cachedData = localStorage.getItem(storageKey);
         if (cachedData) {
-          console.log(`Loaded from local storage: ${storageKey}`);
           setPokemon(JSON.parse(cachedData));
           setLoading(false);
           return;
         }
+        if (!url) {
+    setLoading(false);
+    setError("Invalid URL");
+    return;
+  }
 
         const res = await fetch(url);
         if (!res.ok) throw new Error("Failed to fetch Pokémon details");

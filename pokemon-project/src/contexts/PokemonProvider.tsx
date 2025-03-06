@@ -46,27 +46,43 @@ export const PokemonProvider: React.FC<{ children: React.ReactNode }> = ({ child
     fetchPokemonList();
   }, []);
 
-  useEffect(() => {
-    let sortedList = [...pokemonList];
 
-    if (sortOption === "Sort by Name") {
-      sortedList.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOption === "Sort by ID") {
-      sortedList.sort((a, b) => a.id - b.id);
-    }
 
-    let filteredList = sortedList;
-    if (searchQuery) {
-      filteredList = sortedList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-    const totalFilteredItems = filteredList.length;
-    const paginatedList = filteredList.slice(offset, offset + limit);
-    setFilteredPokemonList(paginatedList);
+useEffect(() => {
+  let sortedList = [...pokemonList];
+
+  if (sortOption === "Sort by Name") {
+    sortedList.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOption === "Sort by ID") {
+    sortedList.sort((a, b) => a.id - b.id);
+  }
+
+  let filteredList = sortedList;
+  if (searchQuery) {
+    const lowerCaseQuery = searchQuery.toLowerCase();
   
-    setTotalFilteredItems(totalFilteredItems);
-  }, [pokemonList, searchQuery, sortOption, offset, limit]);
+    filteredList = sortedList.filter((pokemon) => 
+      pokemon.name.toLowerCase().startsWith(lowerCaseQuery)
+    );
+  
+   
+    
+  }
+
+  setTotalFilteredItems(filteredList.length); 
+
+  if (offset >= filteredList.length) {
+    setOffset(0);
+  }
+
+  const paginatedList = filteredList.slice(offset, offset + limit);
+  setFilteredPokemonList(paginatedList);
+
+  console.log("Filtered List:", filteredList);
+  console.log("Filtered Length:", filteredList.length);
+  console.log("Current Limit:", limit);
+}, [pokemonList, searchQuery, sortOption, offset, limit]);
+
   const value: PokemonContextType = {
     pokemonList: filteredPokemonList,
     loading,
